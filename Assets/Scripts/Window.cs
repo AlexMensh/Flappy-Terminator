@@ -7,7 +7,7 @@ public abstract class Window : MonoBehaviour
     [SerializeField] private Button _actionButton;
 
     protected CanvasGroup WindowGroup => _windowGroup;
-    protected Button ActionButton=> _actionButton;
+    protected Button ActionButton => _actionButton;
 
     private void OnEnable()
     {
@@ -23,5 +23,4 @@ public abstract class Window : MonoBehaviour
 
     public abstract void Open();
     public abstract void Close();
-    
 }

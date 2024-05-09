@@ -36,7 +36,7 @@ public class Bird : MonoBehaviour
             GameOver?.Invoke();
         }
 
-        else if(interactable is ScoreZone) 
+        else if (interactable is ScoreZone)
         {
             _scoreCounter.Add();
         }

@@ -17,7 +17,7 @@ public class PipeGenerator : MonoBehaviour
     {
         var wait = new WaitForSeconds(_delay);
 
-        while (enabled) 
+        while (enabled)
         {
             Spawn();
             yield return wait;

@@ -1,5 +1,3 @@
 using UnityEngine;
 
-public class Pipe : MonoBehaviour, IInteractable
-{
-}
+public class Pipe : MonoBehaviour, IInteractable { }
