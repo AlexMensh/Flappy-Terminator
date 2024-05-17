@@ -1,22 +1,22 @@
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(BirdMover))]
+[RequireComponent(typeof(PlayerMover))]
 [RequireComponent(typeof(ScoreCounter))]
-[RequireComponent(typeof(BirdCollisionHandler))]
-public class Bird : MonoBehaviour
+[RequireComponent(typeof(PlayerCollisionHandler))]
+public class Player : MonoBehaviour
 {
-    private BirdMover _birdMover;
+    private PlayerMover _birdMover;
     private ScoreCounter _scoreCounter;
-    private BirdCollisionHandler _handler;
+    private PlayerCollisionHandler _handler;
 
     public event Action GameOver;
 
     private void Awake()
     {
         _scoreCounter = GetComponent<ScoreCounter>();
-        _handler = GetComponent<BirdCollisionHandler>();
-        _birdMover = GetComponent<BirdMover>();
+        _handler = GetComponent<PlayerCollisionHandler>();
+        _birdMover = GetComponent<PlayerMover>();
     }
 
     private void OnEnable()
@@ -31,7 +31,7 @@ public class Bird : MonoBehaviour
 
     private void ProcessCollision(IInteractable interactable)
     {
-        if (interactable is Pipe)
+        if (interactable is Enemy)
         {
             GameOver?.Invoke();
         }

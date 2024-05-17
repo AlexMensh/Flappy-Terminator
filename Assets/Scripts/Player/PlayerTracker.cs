@@ -1,14 +1,14 @@
 using UnityEngine;
 
-public class BirdTracker : MonoBehaviour
+public class PlayerTracker : MonoBehaviour
 {
-    [SerializeField] private Bird _bird;
+    [SerializeField] private Player _player;
     [SerializeField] private float _xOffset;
 
     private void Update()
     {
         var position = transform.position;
-        position.x = _bird.transform.position.x + _xOffset;
+        position.x = _player.transform.position.x + _xOffset;
         transform.position = position;
     }
 }
