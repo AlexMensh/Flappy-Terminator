@@ -338,7 +338,7 @@ GameObject:
   - component: {fileID: 304907348}
   - component: {fileID: 304907349}
   m_Layer: 0
-  m_Name: BulletSpawner
+  m_Name: EnemyBulletSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -374,6 +374,7 @@ MonoBehaviour:
   _container: {fileID: 1879254870}
   _prefab: {fileID: 2664203907046161037, guid: af078410d28d892409910f7d1c73ece8, type: 3}
   _isPlayer: 0
+  _bulletSpeed: 5
 --- !u!1 &346085001
 GameObject:
   m_ObjectHideFlags: 0
@@ -877,6 +878,7 @@ MonoBehaviour:
   _spawnDelay: 1
   _lowerBound: 3
   _upperBound: -3
+  _bulletSpawner: {fileID: 304907349}
 --- !u!1 &923636903
 GameObject:
   m_ObjectHideFlags: 0
@@ -1670,6 +1672,10 @@ PrefabInstance:
       propertyPath: _container
       value: 
       objectReference: {fileID: 1879254870}
+    - target: {fileID: 3948716618690402193, guid: 854da773a47a54b4e92df38c416d0e91, type: 3}
+      propertyPath: _bulletSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6908934654940859764, guid: 854da773a47a54b4e92df38c416d0e91, type: 3}
       propertyPath: m_Name
       value: Player

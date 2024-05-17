@@ -5,6 +5,7 @@ public class BulletSpawner : MonoBehaviour
     [SerializeField] private Transform _container;
     [SerializeField] private Bullet _prefab;
     [SerializeField] private bool _isPlayer;
+    [SerializeField] private float _bulletSpeed;
 
     private ObjectPooler<Bullet> _pool;
 
@@ -29,5 +30,6 @@ public class BulletSpawner : MonoBehaviour
 
         bullet.gameObject.SetActive(true);
         bullet.transform.position = position;
+        bullet.SetSpeed(_bulletSpeed);
     }
 }

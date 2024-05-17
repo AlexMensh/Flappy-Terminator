@@ -23,6 +23,11 @@ public class Bullet : MonoBehaviour
         _isReversed = true;
     }
 
+    public void SetSpeed(float speed)
+    {
+        _speed = speed;
+    }
+
     private void Move(bool isPlayer)
     {
         if (_isReversed == false)
