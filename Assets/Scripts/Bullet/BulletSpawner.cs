@@ -20,6 +20,11 @@ public class BulletSpawner : MonoBehaviour
         _pool.PutObject(bullet);
     }
 
+    public void Reset()
+    {
+        _pool.Reset();
+    }
+
     public void SpawnObject(Vector3 position)
     {
         var bullet = _pool.GetObject();

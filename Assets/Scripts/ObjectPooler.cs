@@ -6,7 +6,7 @@ public class ObjectPooler<T> where T : MonoBehaviour
     private Transform _container;
     private T _prefab;
 
-    private Queue<T> _pool = new Queue<T>();
+    private List<T> _pool = new List<T>();
 
     public IEnumerable<T> PooledObjects => _pool;
 
@@ -18,25 +18,37 @@ public class ObjectPooler<T> where T : MonoBehaviour
 
     public T GetObject()
     {
-        if (_pool.Count == 0)
-        {
-            var item = Object.Instantiate(_prefab);
-            item.transform.parent = _container;
+        T item = null;
 
-            return item;
+        foreach (var checkItem in _pool)
+        {
+            if (checkItem.isActiveAndEnabled == false)
+            {
+                item = checkItem;
+                break;
+            }
         }
 
-        return _pool.Dequeue();
+        if (item == null)
+        {
+            item = Object.Instantiate(_prefab);
+            _pool.Add(item);
+            item.transform.parent = _container;
+        }
+
+        return item;
     }
 
     public void PutObject(T item)
     {
-        _pool.Enqueue(item);
         item.gameObject.SetActive(false);
     }
 
     public void Reset()
     {
-        _pool.Clear();
+        foreach (var item in _pool)
+        {
+            item?.gameObject.SetActive(false);
+        }
     }
 }

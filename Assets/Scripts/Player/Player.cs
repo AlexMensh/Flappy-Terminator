@@ -1,9 +1,7 @@
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(PlayerMover))]
-[RequireComponent(typeof(PlayerShoot))]
-[RequireComponent(typeof(ScoreCounter))]
+[RequireComponent(typeof(PlayerMover), typeof(PlayerShoot), typeof(ScoreCounter))]
 [RequireComponent(typeof(PlayerCollisionHandler))]
 public class Player : MonoBehaviour
 {
@@ -38,8 +36,11 @@ public class Player : MonoBehaviour
         {
             GameOver?.Invoke();
         }
-
         else if (interactable is Bullet)
+        {
+            GameOver?.Invoke();
+        }
+        else if (interactable is Ground)
         {
             GameOver?.Invoke();
         }
@@ -48,6 +49,7 @@ public class Player : MonoBehaviour
     public void StartPlay()
     {
         _scoreCounter.Reset();
+        _playerMover.Reset();
         _playerMover.ActivateInput();
         _playerShoot.ActivateInput();
     }

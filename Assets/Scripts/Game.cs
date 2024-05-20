@@ -3,7 +3,9 @@ using UnityEngine;
 public class Game : MonoBehaviour
 {
     [SerializeField] private Player _player;
+    [SerializeField] private BulletSpawner _playerBulletSpawner;
     [SerializeField] private EnemySpawner _enemySpawner;
+    [SerializeField] private BulletSpawner _enemyBulletSpawner;
     [SerializeField] private StartScreen _startScreen;
     [SerializeField] private EndGameScreen _endGameScreen;
 
@@ -31,6 +33,9 @@ public class Game : MonoBehaviour
     {
         Time.timeScale = 0;
         _player.EndPlay();
+        _enemySpawner.Reset();
+        _enemyBulletSpawner.Reset();
+        _playerBulletSpawner.Reset();
         _endGameScreen.Open();
     }
 
@@ -42,7 +47,6 @@ public class Game : MonoBehaviour
     private void OnPlayButtonClick()
     {
         _startScreen.Close();
-
         StartGame();
     }
 

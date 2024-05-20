@@ -5,11 +5,11 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private Transform _container;
     [SerializeField] private Enemy _prefab;
+    [SerializeField] private BulletSpawner _bulletSpawner;
+    [SerializeField] private ScoreCounter _scoreCounter;
     [SerializeField] private float _spawnDelay;
     [SerializeField] private float _lowerBound;
     [SerializeField] private float _upperBound;
-    [SerializeField] private BulletSpawner _bulletSpawner;
-    [SerializeField] private ScoreCounter _scoreCounter;
 
     private ObjectPooler<Enemy> _pool;
 
@@ -26,6 +26,11 @@ public class EnemySpawner : MonoBehaviour
     public void RemoveObject(Enemy enemy)
     {
         _pool.PutObject(enemy);
+    }
+
+    public void Reset()
+    {
+        _pool.Reset();
     }
 
     private IEnumerator GenerateEnemies()
@@ -49,7 +54,7 @@ public class EnemySpawner : MonoBehaviour
         enemy.gameObject.SetActive(true);
         enemy.transform.position = spawnPoint;
         enemy.gameObject.GetComponent<EnemyShoot>().StartShoot(_bulletSpawner);
-        enemy.gameObject.GetComponent<EnemyCollisionHandler>().SetCounter(_scoreCounter);
+        enemy.gameObject.GetComponent<Enemy>().SetCounter(_scoreCounter);
         enemy.gameObject.GetComponent<EnemyCollisionHandler>().SetSpawner(this);
     }
 }
