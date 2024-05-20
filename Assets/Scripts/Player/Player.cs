@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerCollisionHandler))]
 public class Player : MonoBehaviour
 {
-    private PlayerMover _birdMover;
+    private PlayerMover _playerMover;
     private ScoreCounter _scoreCounter;
     private PlayerCollisionHandler _handler;
 
@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     {
         _scoreCounter = GetComponent<ScoreCounter>();
         _handler = GetComponent<PlayerCollisionHandler>();
-        _birdMover = GetComponent<PlayerMover>();
+        _playerMover = GetComponent<PlayerMover>();
     }
 
     private void OnEnable()
@@ -36,15 +36,15 @@ public class Player : MonoBehaviour
             GameOver?.Invoke();
         }
 
-        else if (interactable is ScoreZone)
+        else if (interactable is Bullet)
         {
-            _scoreCounter.Add();
+            GameOver?.Invoke();
         }
     }
 
     public void Reset()
     {
         _scoreCounter.Reset();
-        _birdMover.Reset();
+        _playerMover.Reset();
     }
 }

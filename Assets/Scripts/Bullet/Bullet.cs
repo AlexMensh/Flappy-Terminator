@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour, IInteractable
 {
     [SerializeField] private float _speed;
     [SerializeField] private bool _isReversed;
@@ -28,6 +28,11 @@ public class Bullet : MonoBehaviour
         _speed = speed;
     }
 
+    public bool GetReverseStatus()
+    {
+        return _isReversed;
+    }
+
     private void Move(bool isPlayer)
     {
         if (_isReversed == false)
@@ -38,7 +43,5 @@ public class Bullet : MonoBehaviour
         {
             _rigidbody2D.velocity = Vector2.left * _speed;
         }
-
     }
-
 }

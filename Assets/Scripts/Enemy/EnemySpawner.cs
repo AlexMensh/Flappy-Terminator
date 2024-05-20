@@ -48,5 +48,6 @@ public class EnemySpawner : MonoBehaviour
         enemy.gameObject.SetActive(true);
         enemy.transform.position = spawnPoint;
         enemy.gameObject.GetComponent<EnemyShoot>().StartShoot(_bulletSpawner);
+        enemy.gameObject.GetComponent<EnemyCollisionHandler>().SetSpawner(this);
     }
 }
