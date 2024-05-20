@@ -27,10 +27,13 @@ public class Enemy : MonoBehaviour, IInteractable
 
     private void ProcessCollision(Bullet bullet, EnemySpawner spawner)
     {
-        if (bullet.GetComponent<Bullet>().GetReverseStatus() == false)
+        if (bullet.TryGetComponent(out Bullet bulletItem))
         {
-            _counter.Add();
-            spawner.RemoveObject(this);
+            if (bulletItem.GetReverseStatus() == false)
+            {
+                _counter.Add();
+                spawner.RemoveObject(this);
+            }
         }
     }
 }

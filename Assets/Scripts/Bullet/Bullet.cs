@@ -1,23 +1,28 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(SpriteRenderer))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class Bullet : MonoBehaviour, IInteractable
 {
     [SerializeField] private bool _isReversed;
 
     private float _speed;
     private SpriteRenderer _spriteRenderer;
-    private Rigidbody2D _rigidbody2D;
 
     private void Start()
     {
-        _rigidbody2D = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (_isReversed == true)
+        {
+            transform.Rotate(0f, 180f, 0f);
+            _spriteRenderer.material.color = Color.red;
+            _speed = -_speed;
+        }
     }
 
-    void Update()
+    private void Update()
     {
-        Move(_isReversed);
+        Move();
     }
 
     public void ReverseMovement()
@@ -35,17 +40,8 @@ public class Bullet : MonoBehaviour, IInteractable
         return _isReversed;
     }
 
-    private void Move(bool isPlayer)
+    private void Move()
     {
-        if (_isReversed == false)
-        {
-            _rigidbody2D.velocity = Vector2.right * _speed;
-        }
-        else if (_isReversed == true)
-        {
-            _rigidbody2D.velocity = Vector2.left * _speed;
-            _spriteRenderer.flipX = true;
-            _spriteRenderer.material.color = Color.red;
-        }
+        transform.position += Vector3.right * _speed * Time.deltaTime;
     }
 }
