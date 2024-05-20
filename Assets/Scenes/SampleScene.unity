@@ -880,6 +880,7 @@ MonoBehaviour:
   _lowerBound: 3
   _upperBound: -3
   _bulletSpawner: {fileID: 304907349}
+  _scoreCounter: {fileID: 1216162872}
 --- !u!1 &923636903
 GameObject:
   m_ObjectHideFlags: 0
@@ -1066,10 +1067,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1825567878}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.378629, y: 0.20212297}
-  m_AnchorMax: {x: 0.6408129, y: 0.29287454}
-  m_AnchoredPosition: {x: -10.5, y: -5}
-  m_SizeDelta: {x: 3.119995, y: 23.789978}
+  m_AnchorMin: {x: 0.36342946, y: 0.44521123}
+  m_AnchorMax: {x: 0.6221204, y: 0.5427571}
+  m_AnchoredPosition: {x: 8.5, y: 0.9999695}
+  m_SizeDelta: {x: 7.119995, y: 11.789978}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1295379271
 MonoBehaviour:
@@ -1188,7 +1189,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.378629, y: 0.35517812}
   m_AnchorMax: {x: 0.651, y: 0.45757356}
-  m_AnchoredPosition: {x: -5.5, y: 0}
+  m_AnchoredPosition: {x: -5.5, y: -17}
   m_SizeDelta: {x: -7.880005, y: 1.789978}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1463748932
@@ -1255,9 +1256,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4f437e97b15d22e4ca2b30f7bf82fcfe, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6314582f054ba42439c403d16b0d536f, type: 3}
   m_Type: 0
-  m_PreserveAspect: 1
+  m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -1615,7 +1616,7 @@ Transform:
   m_GameObject: {fileID: 1879254869}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.92, y: 0.58097553, z: 0.23763466}
+  m_LocalPosition: {x: 3.98, y: 0.58097553, z: 0.23763466}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1673,10 +1674,6 @@ PrefabInstance:
       propertyPath: _container
       value: 
       objectReference: {fileID: 1879254870}
-    - target: {fileID: 3948716618690402193, guid: 854da773a47a54b4e92df38c416d0e91, type: 3}
-      propertyPath: _spawnOffset.x
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6908934654940859764, guid: 854da773a47a54b4e92df38c416d0e91, type: 3}
       propertyPath: m_Name
       value: Player

@@ -3,27 +3,24 @@ using UnityEngine;
 public class PlayerMover : MonoBehaviour
 {
     [SerializeField] private float _speed;
-    [SerializeField] private bool isActive;
-
-    private Vector3 _startPosition;
-
-    private void Start()
-    {
-        _startPosition = transform.position;
-    }
+    [SerializeField] private bool _isActive;
 
     private void Update()
     {
-        if (isActive)
+        if (_isActive)
         {
             Move();
         }
     }
 
-    public void Reset()
+    public void ActivateInput()
     {
-        isActive = true;
-        transform.position = _startPosition;
+        _isActive = true;
+    }
+
+    public void DeactivateInput()
+    {
+        _isActive = false;
     }
 
     private void Move()

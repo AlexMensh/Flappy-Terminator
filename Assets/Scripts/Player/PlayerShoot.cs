@@ -1,8 +1,10 @@
 using UnityEngine;
 
-[RequireComponent (typeof(BulletSpawner))]
+[RequireComponent(typeof(BulletSpawner))]
 public class PlayerShoot : MonoBehaviour
 {
+    [SerializeField] private bool _isActive;
+
     private BulletSpawner _bulletSpawner;
 
     private void Start()
@@ -11,6 +13,24 @@ public class PlayerShoot : MonoBehaviour
     }
 
     private void Update()
+    {
+        if (_isActive)
+        {
+            Shoot();
+        }
+    }
+
+    public void ActivateInput()
+    {
+        _isActive = true;
+    }
+
+    public void DeactivateInput()
+    {
+        _isActive = false;
+    }
+
+    private void Shoot()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {

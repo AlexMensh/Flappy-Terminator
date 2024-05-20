@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Game : MonoBehaviour
@@ -31,6 +30,7 @@ public class Game : MonoBehaviour
     private void OnGameOver()
     {
         Time.timeScale = 0;
+        _player.EndPlay();
         _endGameScreen.Open();
     }
 
@@ -42,12 +42,13 @@ public class Game : MonoBehaviour
     private void OnPlayButtonClick()
     {
         _startScreen.Close();
+
         StartGame();
     }
 
     private void StartGame()
     {
         Time.timeScale = 1;
-        _player.Reset();
+        _player.StartPlay();
     }
 }

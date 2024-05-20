@@ -9,6 +9,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float _lowerBound;
     [SerializeField] private float _upperBound;
     [SerializeField] private BulletSpawner _bulletSpawner;
+    [SerializeField] private ScoreCounter _scoreCounter;
 
     private ObjectPooler<Enemy> _pool;
 
@@ -48,6 +49,7 @@ public class EnemySpawner : MonoBehaviour
         enemy.gameObject.SetActive(true);
         enemy.transform.position = spawnPoint;
         enemy.gameObject.GetComponent<EnemyShoot>().StartShoot(_bulletSpawner);
+        enemy.gameObject.GetComponent<EnemyCollisionHandler>().SetCounter(_scoreCounter);
         enemy.gameObject.GetComponent<EnemyCollisionHandler>().SetSpawner(this);
     }
 }
