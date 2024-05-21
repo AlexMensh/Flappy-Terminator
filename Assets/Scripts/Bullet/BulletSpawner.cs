@@ -4,7 +4,6 @@ public class BulletSpawner : MonoBehaviour
 {
     [SerializeField] private Transform _container;
     [SerializeField] private Bullet _prefab;
-    [SerializeField] private bool _isPlayer;
     [SerializeField] private float _bulletSpeed;
     [SerializeField] private Vector3 _spawnOffset;
 
@@ -28,11 +27,6 @@ public class BulletSpawner : MonoBehaviour
     public void SpawnObject(Vector3 position)
     {
         var bullet = _pool.GetObject();
-
-        if (_isPlayer == false)
-        {
-            bullet.ReverseMovement();
-        }
 
         bullet.gameObject.SetActive(true);
         bullet.transform.position = position + _spawnOffset;

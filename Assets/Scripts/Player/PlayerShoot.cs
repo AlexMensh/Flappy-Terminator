@@ -32,7 +32,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void Shoot()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             _bulletSpawner.SpawnObject(transform.position);
         }

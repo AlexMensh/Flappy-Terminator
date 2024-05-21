@@ -25,12 +25,18 @@ public class EnemySpawner : MonoBehaviour
 
     public void RemoveObject(Enemy enemy)
     {
+        enemy.OnDeath -= HandleEnemyDeath;
         _pool.PutObject(enemy);
     }
 
     public void Reset()
     {
         _pool.Reset();
+    }
+    private void HandleEnemyDeath(Enemy enemy)
+    {
+        _scoreCounter.Add();
+        RemoveObject(enemy);
     }
 
     private IEnumerator GenerateEnemies()
@@ -50,11 +56,9 @@ public class EnemySpawner : MonoBehaviour
         Vector3 spawnPoint = new Vector3(transform.position.x, spawnPositionY, transform.position.z);
 
         var enemy = _pool.GetObject();
-
         enemy.gameObject.SetActive(true);
         enemy.transform.position = spawnPoint;
-        enemy.gameObject.GetComponent<EnemyShoot>().StartShoot(_bulletSpawner);
-        enemy.gameObject.GetComponent<Enemy>().SetCounter(_scoreCounter);
-        enemy.gameObject.GetComponent<EnemyCollisionHandler>().SetSpawner(this);
+        enemy.StartShoot(_bulletSpawner);
+        enemy.OnDeath += HandleEnemyDeath;
     }
 }

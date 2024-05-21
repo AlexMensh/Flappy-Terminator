@@ -1,38 +1,42 @@
+using System;
 using UnityEngine;
 
+[RequireComponent(typeof(EnemyCollisionHandler), typeof(EnemyShoot))]
 public class Enemy : MonoBehaviour, IInteractable
 {
-    private EnemyCollisionHandler _handler;
-    private ScoreCounter _counter;
+    private EnemyCollisionHandler _collisionHandler;
+    private EnemyShoot _enemyShoot;
+
+    public event Action<Enemy> OnDeath;
 
     private void Awake()
     {
-        _handler = GetComponent<EnemyCollisionHandler>();
+        _collisionHandler = GetComponent<EnemyCollisionHandler>();
+        _enemyShoot = GetComponent<EnemyShoot>();
     }
 
     private void OnEnable()
     {
-        _handler.CollisionDetected += ProcessCollision;
+        _collisionHandler.CollisionDetected += ProcessCollision;
     }
 
     private void OnDisable()
     {
-        _handler.CollisionDetected -= ProcessCollision;
+        _collisionHandler.CollisionDetected -= ProcessCollision;
     }
 
-    public void SetCounter(ScoreCounter scoreCounter)
+    public void StartShoot(BulletSpawner bulletSpawner)
     {
-        _counter = scoreCounter;
+        _enemyShoot.StartShoot(bulletSpawner);
     }
 
-    private void ProcessCollision(Bullet bullet, EnemySpawner spawner)
+    private void ProcessCollision(Bullet bullet)
     {
         if (bullet.TryGetComponent(out Bullet bulletItem))
         {
-            if (bulletItem.GetReverseStatus() == false)
+            if (bulletItem.GetAmmoOwner() == false)
             {
-                _counter.Add();
-                spawner.RemoveObject(this);
+                OnDeath?.Invoke(this);
             }
         }
     }
